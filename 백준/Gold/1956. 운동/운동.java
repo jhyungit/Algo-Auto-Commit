@@ -36,12 +36,16 @@ public class Main {
 		// 플로이드 워셜 수행.
 		floydwarshell();
 		
-		int ans = INF;
-		for(int i = 1; i <= V; i++) {
-          ans = Math.min(ans, graph[i][i]);
+		int ans = Integer.MAX_VALUE;
+		for(int i = 1; i < V; i++) {
+			for(int j = i+1; j<=V; j++) {
+				if(graph[i][j] == INF || graph[j][i] == INF) continue;
+				//왕복 가능
+				ans = Math.min(graph[i][j]+graph[j][i], ans);
+			}
 		}
-    	
-		System.out.println(ans != INF ? ans : -1);
+		
+		System.out.println(ans != Integer.MAX_VALUE ? ans : -1);
 	}
 	
 	static void floydwarshell() {
