@@ -20,14 +20,12 @@ for _ in range(N):
 
 graph = []
 
-for u, ar in enumerate(arr):
-    for v, w in enumerate(ar):
-        if u == v:
-            continue
-        graph.append((u+1,v+1,w))
+for u in range(N):
+    for v in range(u + 1, N):
+        graph.append((u, v, arr[u][v]))
 
 graph.sort(key= lambda x : x[2])
-parent = [i for i in range (N+1)]
+parent = [i for i in range (N)]
 ans = 0
 for u,v,w in graph:
     if findParent(parent, u) != findParent(parent, v):
