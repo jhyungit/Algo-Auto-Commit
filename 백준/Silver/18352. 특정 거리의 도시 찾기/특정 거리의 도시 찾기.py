@@ -16,17 +16,16 @@ def dijkstra(start):
         if dist[u] < w:
             continue
 
-        for next in graph[u]:
-            if dist[u] + w < dist[next]:
-                dist[next] = dist[u] + 1
-                heapq.heappush(heap, (dist[next], next))
+        for nxt in graph[u]:
+            if dist[u] + 1 < dist[nxt]:
+                dist[nxt] = dist[u] + 1
+                heapq.heappush(heap, (dist[nxt], nxt))
 
 def solution():
     global graph, dist
     
     # 도시 수, 도로 수, 거리 정보, 출발 좌표
     n,m,k,x = map(int, input().split())
-    
     graph = [[] for _ in range(n+1)]
 
     # u -> v 단 방향 도로
@@ -39,18 +38,13 @@ def solution():
 
     dijkstra(x)
 
-    ans = []
+    found = False
     for i in range(1, n+1):
         if dist[i] == k:
-            ans.append(i)
+            print(i)
+            found = True
 
-    if ans == []:
-        return print(-1)
-    ans.sort()
-
-    for i in range(len(ans)):
-        print(ans[i])
-
-
+    if not found:
+        print(-1)
 
 solution()
