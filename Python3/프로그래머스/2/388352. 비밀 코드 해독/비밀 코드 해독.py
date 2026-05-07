@@ -1,7 +1,6 @@
 from itertools import combinations
 
 def check(candi, q, ans):
-    
     for i, num_arr in enumerate(q):
         cnt = 0
         for num in num_arr:
